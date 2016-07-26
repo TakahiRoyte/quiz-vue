@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="app" v-cloak>
+  <button v-on:click="fetchData">fetch</button>
+
+  <div v-if="questionOpen">
+    <h1>問題 No.{{ question.id }}</h1>
+    <p v-text="question.problem"></p>
+    <ul>
+      <li v-for="choice in choices">
+        <input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices"><label for="{{ choice }}">{{ choice }}</label>
+      </li>
+    </ul>
+    <p>選択: {{ checkedChoices }}</p>
+    <button v-on:click="answerQuiz" :disabled="answerOpen" id="answerButton">回答</button>
+  </div>
+
+  <div v-if="answerOpen" transition="fade">
+    <h1>解答</h1>
+    <h2 v-if="isCorrect" id="correct"> O </h2>
+    <h2 v-else id="wrong"> X </h2>
+    <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
+    <p v-text="question.answer"></p>
+    <button v-on:click="nextQuiz">次の問題</button>
+  </div>
+
+  <div v-if="endOpen" transition="fade">
+    <h1>クリア！</h1>
+    <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
+    <button v-on:click="initializeApp">もう１度！</button>
+  </div>
+
+  <script src="lib/vue.min.js"></script>
+  <script src="lib/lodash.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+
+</html>
