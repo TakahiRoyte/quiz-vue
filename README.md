@@ -1,2 +1,7 @@
-# quiz-vue
-quiz web application based on vue.js
+# Quiz-Vue
+
+Vue.jsをベースにしたクイズアプリケーションです。JSONから出題順や選択肢をシャッフルしてクイズに挑戦することができます。
+
+## Quiz JSON Creator
+
+クイズ用のJSONファイルを作成するための画面です。Chromeのみクリップボードからの画像ペーストにも対応しています。ただしbase64形式にエンコードしているため、ファイルサイズが大きい場合パフォーマンスに影響するので注意してください。

@@ -12,6 +12,7 @@
   <div v-if="questionOpen">
     <h1>問題 No.{{ question.id }}</h1>
     <p v-text="question.problem"></p>
+    <img :src="question.problemImage">
     <ul>
       <li v-for="choice in choices">
         <input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices"><label for="{{ choice }}">{{ choice }}</label>
@@ -27,6 +28,7 @@
     <h2 v-else id="wrong"> X </h2>
     <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
     <p v-text="question.answer"></p>
+    <img :src="question.answerImage">
     <button v-on:click="nextQuiz">次の問題</button>
   </div>
 
@@ -36,7 +38,7 @@
     <button v-on:click="initializeApp">もう１度！</button>
   </div>
   <hr>
-  <a href="qjc.html">click here to create more JSON for quiz!</a>
+  <a href="qjc.html">クイズ用のJSONを作りに行く！</a>
 
   <script src="lib/vue.min.js"></script>
   <script src="lib/lodash.min.js"></script>
