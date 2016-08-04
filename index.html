@@ -8,7 +8,6 @@
 </head>
 
 <body id="app" v-cloak>
-  <button v-on:click="fetchData">fetch</button>
 
   <div v-if="questionOpen">
     <h1>問題 No.{{ question.id }}</h1>
@@ -36,6 +35,8 @@
     <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
     <button v-on:click="initializeApp">もう１度！</button>
   </div>
+  <hr>
+  <a href="qjc.html">click here to create more JSON for quiz!</a>
 
   <script src="lib/vue.min.js"></script>
   <script src="lib/lodash.min.js"></script>

@@ -117,7 +117,7 @@ function getQuestions() {
       corrects: ["正解1", "正解2"],
       incorrects: ["不正解1", "不正解2"],
       answer: "this is sample answer, this is sample answer, this is sample answer"
-    }
+    },
   ]
   return questions;
 }

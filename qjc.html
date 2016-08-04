@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/toastr.min.css">
+</head>
+
+<body>
+
+  <div id="qjc">
+    <h1>Quiz JSON Creator(QJC)</h1>
+    <h3>ID</h3>
+    <input type="text" v-model="id" id="id">
+    <h3>PROBLEM</h3>
+    <textarea v-model="problemText"></textarea>
+    <div contenteditable="true" width="50px" height="50px">
+      paste image for PROBLEM here(開発中)
+    </div>
+    <h3>CORRECTS</h3>
+    <input type="text" v-model="correct1">
+    <input type="text" v-model="correct2">
+    <input type="text" v-model="correct3">
+    <input type="text" v-model="correct4">
+    <input type="text" v-model="correct5">
+    <h3>INCORRECTS</h3>
+    <input type="text" v-model="incorrect1">
+    <input type="text" v-model="incorrect2">
+    <input type="text" v-model="incorrect3">
+    <input type="text" v-model="incorrect4">
+    <input type="text" v-model="incorrect5">
+    <h3>ANSWER</h3>
+    <textarea v-model="answerText"></textarea>
+    <div contenteditable="true" width="50px" height="50px">
+      paste image for ANSWER here(開発中)
+    </div>
+    <button @click="addQuiz">add</button>
+    <button @click="resetInput">reset</button>
+    <hr>
+    <div>
+      <textarea v-model="output"></textarea>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <a href="index.html">click here to start quiz!</a>
+  <script src="lib/vue.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/toastr.min.js"></script>
+  <script src="scripts/qjc.js"></script>
+</body>
+
+</html>
