@@ -9,6 +9,11 @@ body {
   color:#444;
 }
 
+.mdtext {
+  width: 50%;
+  height: 6rem;
+}
+
 #answerButton {
   width:200px;
   font-size:24px;
