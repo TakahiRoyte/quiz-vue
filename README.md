@@ -59,4 +59,4 @@ $ git push origin branch_name
 ```
 
 - 自分のGithubリポジトリにブランチが作成されていることを確認（ブランチは画面左側のbranchボタンを押すとプルダウンで表示される）
-- フォーク元の[Githubリポジトリ(https://github.com/TakahiRoyte/quiz-vue)でプルリクエスト(変更取込依頼)を行う
+- フォーク元の[Githubリポジトリ](https://github.com/TakahiRoyte/quiz-vue)でプルリクエスト(変更取込依頼)を行う
