@@ -5,6 +5,7 @@ var demo = new Vue({
     id: '',
     problemText: '',
     problemImage: '',
+    reference: '',
     correct1: '',
     correct2: '',
     correct3: '',
@@ -29,7 +30,7 @@ var demo = new Vue({
       var corrects = CreateChoiceArrayStr(this.correct1, this.correct2, this.correct3, this.correct4, this.correct5);
       var incorrects = CreateChoiceArrayStr(this.incorrect1, this.incorrect2, this.incorrect3, this.incorrect4, this.incorrect5);
 
-      this.output += `{"id": "${this.id}", "problem": "${problem}", "problemImage": "${this.problemImage}",  "corrects": ${corrects}, "incorrects": ${incorrects}, "answer": "${answer}", "answerImage": "${this.answerImage}"},`;
+      this.output += `{"id": "${this.id}", "problem": "${problem}", "problemImage": "${this.problemImage}", "reference": "${this.reference}", "corrects": ${corrects}, "incorrects": ${incorrects}, "answer": "${answer}", "answerImage": "${this.answerImage}"},\n`;
       toastr.info('problem added!:D');
       this.resetInput();
     },
@@ -37,6 +38,7 @@ var demo = new Vue({
       this.id = '';
       this.problemText = '';
       this.problemImage = '';
+      this.reference = '';
       this.correct1 = '';
       this.correct2 = '';
       this.correct3 = '';
