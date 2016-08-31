@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>QJC</title>
   <link rel="stylesheet" href="css/toastr.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -13,8 +14,8 @@
     <h1>Quiz JSON Creator(QJC)</h1>
     <h3>ID</h3>
     <input type="text" v-model="id" id="id">
-    <h3>問題文</h3>
-    <textarea v-model="problemText"></textarea>
+    <h3>問題文(markdown対応)</h3>
+    <textarea v-model="problemText" class="mdtext"></textarea>
     <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('problem', $event)">
       問題用画像がある場合はここにペースト
     </div>
@@ -33,8 +34,8 @@
     <input type="text" v-model="incorrect3">
     <input type="text" v-model="incorrect4">
     <input type="text" v-model="incorrect5">
-    <h3>解説文</h3>
-    <textarea v-model="answerText"></textarea>
+    <h3>解説文(markdown対応)</h3>
+    <textarea v-model="answerText" class="mdtext"></textarea>
     <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('answer', $event)">
       解説用画像がある場合はここにペースト
     </div>
@@ -51,7 +52,8 @@
   </div>
   <hr>
   <div>
-    <a href="index.html">クイズに戻る！(JSONは保存されません。）</a>
+    <a href="index.html">クイズに戻る！</a>
+    (JSONは保存されません。別途txtファイルなどに保存してください。）
     <script src="lib/vue.min.js"></script>
     <script src="lib/jquery.min.js"></script>
     <script src="lib/toastr.min.js"></script>

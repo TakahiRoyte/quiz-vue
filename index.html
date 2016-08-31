@@ -11,7 +11,7 @@
 
   <div v-if="questionOpen">
     <h1>問題 No.{{ question.id }}</h1>
-    <p v-text="question.problem"></p>
+    <p v-html="question.problem | marked"></p>
     <img :src="question.problemImage">
     <ul>
       <li v-for="choice in choices">
@@ -27,7 +27,7 @@
     <h2 v-if="isCorrect" id="correct"> O </h2>
     <h2 v-else id="wrong"> X </h2>
     <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
-    <p v-text="question.answer"></p>
+    <p v-html="question.answer | marked"></p>
     <img :src="question.answerImage">
     <button v-on:click="nextQuiz">次の問題</button>
   </div>
@@ -42,6 +42,7 @@
 
   <script src="lib/vue.min.js"></script>
   <script src="lib/lodash.min.js"></script>
+  <script src="lib/marked.min.js"></script>
   <script src="scripts/app.js"></script>
 </body>
 
