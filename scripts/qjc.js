@@ -35,10 +35,10 @@ var demo = new Vue({
       this.resetInput();
     },
     resetInput: function () {
-      this.id = '';
+      // this.id = '';
       this.problemText = '';
       this.problemImage = '';
-      this.reference = '';
+      // this.reference = '';
       this.correct1 = '';
       this.correct2 = '';
       this.correct3 = '';
