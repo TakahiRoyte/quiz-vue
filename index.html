@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bootstrap.min.js">
+  <link rel="stylesheet" href="css/bulma.js">
 </head>
 
 <body id="app" v-cloak>
-
+<div class="container">
   <div v-if="questionOpen">
     <h1>問題 ID:{{ question.id }}</h1>
     <h2> {{ questionIndex + 1 }} / {{ questions.length }}</h2>
@@ -47,6 +47,7 @@
   <script src="lib/lodash.min.js"></script>
   <script src="lib/marked.min.js"></script>
   <script src="scripts/app.js"></script>
+</div>
 </body>
 
 </html>
