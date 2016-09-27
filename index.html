@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bulma.js">
+  <link rel="stylesheet" href="css/bulma.css">
 </head>
 
 <body id="app" v-cloak>
@@ -22,7 +22,7 @@
       </li>
     </ul>
     <p>選択: {{ checkedChoices }}</p>
-    <button v-on:click="answerQuiz" :disabled="answerOpen" id="answerButton">回答</button>
+    <button class="button" v-on:click="answerQuiz" :disabled="answerOpen">回答</button>
   </div>
 
   <div v-if="answerOpen" transition="fade">
@@ -32,13 +32,13 @@
     <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
     <p v-html="question.answer | marked"></p>
     <img :src="question.answerImage">
-    <button v-on:click="nextQuiz">次の問題</button>
+    <button class="button" v-on:click="nextQuiz">次の問題</button>
   </div>
 
   <div v-if="endOpen" transition="fade">
     <h1>クリア！</h1>
     <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
-    <button v-on:click="initializeApp">もう１度！</button>
+    <button class="button" v-on:click="initializeApp">もう１度！</button>
   </div>
   <hr>
   <a href="qjc.html">クイズ用のJSONを作りに行く！</a>
