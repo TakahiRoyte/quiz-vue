@@ -31,6 +31,10 @@ body {
   background-color: #fe1e2e;
 }
 
+#answerButton:disabled {
+  background-color: #cccccc;
+}
+
 .fade-transition {
   transition: all 1s ease;
 }

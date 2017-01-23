@@ -18,11 +18,13 @@
     <img :src="question.problemImage">
     <ul>
       <li v-for="choice in choices">
-        <input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices"><label for="{{ choice }}">{{ choice }}</label>
+        <input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices" :disabled="answerOpen"><label for="{{ choice }}">{{ choice }}</label>
       </li>
     </ul>
     <p>選択: {{ checkedChoices }}</p>
-    <button v-on:click="answerQuiz" :disabled="answerOpen" id="answerButton">回答</button>
+    <button v-on:click="answerQuiz" id="answerButton" disabled=true v-if="checkedChoices.length === 0">回答</button>
+    <button v-on:click="answerQuiz" id="answerButton" :disabled="answerOpen" v-else>回答</button>
+	<p>出典: {{ question.reference }}</p>
   </div>
 
   <div v-if="answerOpen" transition="fade">
