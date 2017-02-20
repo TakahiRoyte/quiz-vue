@@ -59,6 +59,7 @@ new Vue({
         this.questionIndex = this.questions.length;
         this.questionOpen = false;
         this.endOpen = true;
+        window.scrollTo(0,0);
       } else {
 
         // questionに次の問題をセットする
@@ -66,6 +67,7 @@ new Vue({
         // 選択肢を生成する correctsとincorrectsを繋げシャッフル
         this.choices = _.shuffle(_.concat(this.question.corrects, this.question.incorrects));
         this.checkedChoices = [];
+        window.scrollTo(0,0);
       }
     },
     // 初期化処理
