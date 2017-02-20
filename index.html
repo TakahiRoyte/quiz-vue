@@ -3,51 +3,78 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bulma.js">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QUIZVUE</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/bulma.css">
 </head>
 
 <body id="app" v-cloak>
-<div class="container">
-  <div v-if="questionOpen">
-    <h1>問題 ID:{{ question.id }}</h1>
-    <h2> {{ questionIndex + 1 }} / {{ questions.length }}</h2>
-    <p v-html="question.problem | marked"></p>
-    <p v-model="question.reference"></p>
-    <img :src="question.problemImage">
-    <ul>
-      <li v-for="choice in choices">
-        <input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices"><label for="{{ choice }}">{{ choice }}</label>
-      </li>
-    </ul>
-    <p>選択: {{ checkedChoices }}</p>
-    <button v-on:click="answerQuiz" :disabled="answerOpen" id="answerButton">回答</button>
-  </div>
 
-  <div v-if="answerOpen" transition="fade">
-    <h1>解答</h1>
-    <h2 v-if="isCorrect" id="correct"> O </h2>
-    <h2 v-else id="wrong"> X </h2>
-    <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
-    <p v-html="question.answer | marked"></p>
-    <img :src="question.answerImage">
-    <button v-on:click="nextQuiz">次の問題</button>
-  </div>
+  <nav class="nav">
+    <div class="nav-left">
+      <a class="nav-item is-brand" href="#">
+        <img src="./images/qv-logo.png" alt="QUIZVUE">
+      </a>
+    </div>
 
-  <div v-if="endOpen" transition="fade">
-    <h1>クリア！</h1>
-    <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
-    <button v-on:click="initializeApp">もう１度！</button>
-  </div>
-  <hr>
-  <a href="qjc.html">クイズ用のJSONを作りに行く！</a>
+    <div class="nav-center">
+      <a class="nav-item">
+        ID:{{ question.id }}
+      </a>
+      <a class="nav-item">
+        No. {{ questionIndex + 1 }} / {{ questions.length }}
+      </a>
+      <!--<a class="nav-item">
+        <button class="button is-info" v-on:click="initializeApp">FETCH</button>
+      </a>-->
+    </div>
 
+    <div class="nav-right">
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div v-if="questionOpen">
+        <p v-html="question.problem | marked"></p>
+        <p v-model="question.reference"></p>
+        <img :src="question.problemImage">
+        <ul>
+          <li v-for="choice in choices">
+            <label class="checkbox"><input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices">{{ choice }}</label>
+          </li>
+        </ul>
+        <p>選択: {{ checkedChoices }}</p>
+        <button class="button is-primary" v-on:click="answerQuiz" :disabled="answerOpen">回答</button>
+      </div>
+
+      <div v-if="answerOpen" transition="fade">
+        <h1>解答</h1>
+        <button v-if="isCorrect" id="correct" class="button is-info"> O </button>
+        <button v-else id="wrong" class="button is-danger"> X </button>
+        <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
+        <p v-html="question.answer | marked"></p>
+        <img :src="question.answerImage">
+        <button class="button is-primary" v-on:click="nextQuiz">次の問題</button>
+      </div>
+
+      <div v-if="endOpen" transition="fade">
+        <h1>クリア！</h1>
+        <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
+        <button class="button is-primary" v-on:click="initializeApp">もう１度！</button>
+      </div>
+      <hr>
+      <a href="qjc.html">クイズ用のJSONを作りに行く！</a>
+
+    </div>
+  </section>
   <script src="lib/vue.min.js"></script>
   <script src="lib/lodash.min.js"></script>
   <script src="lib/marked.min.js"></script>
   <script src="scripts/app.js"></script>
-</div>
+
 </body>
 
 </html>

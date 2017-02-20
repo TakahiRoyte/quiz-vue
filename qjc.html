@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>QJC</title>
+  <link rel="stylesheet" href="css/bulma.css">
   <link rel="stylesheet" href="css/toastr.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -17,7 +18,7 @@
     <h3>問題文(markdown対応)</h3>
     <textarea v-model="problemText" class="mdtext"></textarea>
     <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('problem', $event)">
-      問題用画像がある場合はここにペースト
+      問題用画像がある場合はこのテキスト欄にペースト
     </div>
     <textarea v-model="problemImage" disabled></textarea>
     <h3>出典</h3>
@@ -37,7 +38,7 @@
     <h3>解説文(markdown対応)</h3>
     <textarea v-model="answerText" class="mdtext"></textarea>
     <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('answer', $event)">
-      解説用画像がある場合はここにペースト
+      解説用画像がある場合はこのテキスト欄にペースト
     </div>
     <textarea v-model="answerImage" disabled></textarea>
     <div>

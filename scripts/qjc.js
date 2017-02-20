@@ -2,6 +2,7 @@ var demo = new Vue({
 
   el: '#qjc',
   data: {
+    questions: {},
     id: '',
     problemText: '',
     problemImage: '',
@@ -35,10 +36,10 @@ var demo = new Vue({
       this.resetInput();
     },
     resetInput: function () {
-      this.id = '';
+      // this.id = '';
       this.problemText = '';
       this.problemImage = '';
-      this.reference = '';
+      // this.reference = '';
       this.correct1 = '';
       this.correct2 = '';
       this.correct3 = '';
@@ -79,7 +80,13 @@ var demo = new Vue({
         }
       };
       fr.readAsDataURL(imageFile);
+    },
+    initialize: function() {
+      
     }
+  },
+  ready: function () {
+    this.initialize();
   }
 })
 
