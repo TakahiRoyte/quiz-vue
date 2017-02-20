@@ -2,6 +2,7 @@ var demo = new Vue({
 
   el: '#qjc',
   data: {
+    questions: {},
     id: '',
     problemText: '',
     problemImage: '',
@@ -79,7 +80,13 @@ var demo = new Vue({
         }
       };
       fr.readAsDataURL(imageFile);
+    },
+    initialize: function() {
+      
     }
+  },
+  ready: function () {
+    this.initialize();
   }
 })
 

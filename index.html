@@ -12,7 +12,7 @@
 
 <body id="app" v-cloak>
 
-  <nav class="nav is-primary">
+  <nav class="nav">
     <div class="nav-left">
       <a class="nav-item is-brand" href="#">
         <img src="./images/qv-logo.png" alt="QUIZVUE">
@@ -26,6 +26,9 @@
       <a class="nav-item">
         No. {{ questionIndex + 1 }} / {{ questions.length }}
       </a>
+      <!--<a class="nav-item">
+        <button class="button is-info" v-on:click="initializeApp">FETCH</button>
+      </a>-->
     </div>
 
     <div class="nav-right">
@@ -49,8 +52,8 @@
 
       <div v-if="answerOpen" transition="fade">
         <h1>解答</h1>
-        <h2 v-if="isCorrect" id="correct"> O </h2>
-        <h2 v-else id="wrong"> X </h2>
+        <button v-if="isCorrect" id="correct" class="button is-info"> O </button>
+        <button v-else id="wrong" class="button is-danger"> X </button>
         <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
         <p v-html="question.answer | marked"></p>
         <img :src="question.answerImage">
