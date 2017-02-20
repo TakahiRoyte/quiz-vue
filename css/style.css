@@ -1,13 +1,4 @@
 [v-cloak] {display: none;}
-#correct {color: red;}
-#wrong {color: blue;}
-
-body {
-  margin: 0;
-  padding: 0;
-  line-height:1.4;
-  color:#444;
-}
 
 .mdtext {
   width: 50%;
