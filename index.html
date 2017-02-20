@@ -11,7 +11,6 @@
 </head>
 
 <body id="app" v-cloak>
-
   <nav class="nav">
     <div class="nav-left">
       <a class="nav-item is-brand" href="#">
@@ -43,11 +42,12 @@
         <img :src="question.problemImage">
         <ul>
           <li v-for="choice in choices">
-            <label class="checkbox"><input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices">{{ choice }}</label>
+            <label class="checkbox"><input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices" :disabled="answerOpen">{{ choice }}</label>
           </li>
         </ul>
         <p>選択: {{ checkedChoices }}</p>
-        <button class="button is-primary" v-on:click="answerQuiz" :disabled="answerOpen">回答</button>
+        <button v-on:click="answerQuiz" id="answerButton" :disabled="answerOpen || checkedChoices.length === 0" v-else>回答</button>
+        <p>出典: {{ question.reference }}</p>
       </div>
 
       <div v-if="answerOpen" transition="fade">
