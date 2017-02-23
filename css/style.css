@@ -33,3 +33,7 @@
 .fade-enter, .fade-leave{
   opacity: 0;
 }
+
+.dot-list {
+  list-style-type: circle;
+}
