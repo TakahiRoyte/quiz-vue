@@ -15,6 +15,7 @@ new Vue({
     choices: [],
     checkedChoices: [],
     isCorrect: false,
+	isAnswerButtonDisabled: true,
     answerOpen: false,
     questionOpen: true,
     endOpen: false,
@@ -43,9 +44,9 @@ new Vue({
     answerQuiz: function () {
       // 項目を未選択の場合進まない
       if (this.checkedChoices.length === 0) return;
-
       // 正解を開き正誤の結果を表示する
       this.answerOpen = true;
+      this.isAnswerButtonDisabled = true;
       this.isCorrect = compareArr(this.checkedChoices, this.question.corrects);
       if (this.isCorrect) this.correctNum++;
     },
@@ -59,6 +60,7 @@ new Vue({
         this.questionIndex = this.questions.length;
         this.questionOpen = false;
         this.endOpen = true;
+        window.scrollTo(0,0);
       } else {
 
         // questionに次の問題をセットする
@@ -66,6 +68,7 @@ new Vue({
         // 選択肢を生成する correctsとincorrectsを繋げシャッフル
         this.choices = _.shuffle(_.concat(this.question.corrects, this.question.incorrects));
         this.checkedChoices = [];
+        window.scrollTo(0,0);
       }
     },
     // 初期化処理

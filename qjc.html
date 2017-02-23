@@ -12,53 +12,78 @@
 <body>
 
   <div id="qjc">
-    <h1>Quiz JSON Creator(QJC)</h1>
-    <h3>ID</h3>
-    <input type="text" v-model="id" id="id">
-    <h3>問題文(markdown対応)</h3>
-    <textarea v-model="problemText" class="mdtext"></textarea>
-    <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('problem', $event)">
-      問題用画像がある場合はこのテキスト欄にペースト
-    </div>
-    <textarea v-model="problemImage" disabled></textarea>
-    <h3>出典</h3>
-    <input type="text" v-model="reference">
-    <h3>正解の選択肢（1個以上）</h3>
-    <input type="text" v-model="correct1">
-    <input type="text" v-model="correct2">
-    <input type="text" v-model="correct3">
-    <input type="text" v-model="correct4">
-    <input type="text" v-model="correct5">
-    <h3>不正解の選択肢（1個以上）</h3>
-    <input type="text" v-model="incorrect1">
-    <input type="text" v-model="incorrect2">
-    <input type="text" v-model="incorrect3">
-    <input type="text" v-model="incorrect4">
-    <input type="text" v-model="incorrect5">
-    <h3>解説文(markdown対応)</h3>
-    <textarea v-model="answerText" class="mdtext"></textarea>
-    <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('answer', $event)">
-      解説用画像がある場合はこのテキスト欄にペースト
-    </div>
-    <textarea v-model="answerImage" disabled></textarea>
-    <div>
-      <button @click="addQuiz">追加</button>
-      <button @click="resetInput">リセット</button>
-    </div>
-    <hr>
-    <div>
-      <h3>JSON</h3>
-      <textarea v-model="output"></textarea>
-    </div>
+
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title">Quiz JSON Creator(QJC)</h1>
+              <h2 class="subtitle">クイズ用JSONファイルを作成します</h2>
+            </div>
+            <div class="column has-text-right">
+              <a href="" class="button">Download as JSON</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h3>ID</h3>
+        <input class="input" type="text" v-model="id" id="id">
+        <h3>問題文(markdown対応)</h3>
+        <textarea class="textarea" v-model="problemText" class="mdtext"></textarea>
+        <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('problem', $event)">
+          問題用画像がある場合はこのテキスト欄にペースト（下のテキストエリアではない）
+        </div>
+        <textarea v-model="problemImage" disabled></textarea>
+        <h3>出典</h3>
+        <input class="input" type="text" v-model="reference">
+        <h3>正解の選択肢（1個以上）</h3>
+        <input class="input" type="text" v-model="correct1" placeholder="1">
+        <input class="input" type="text" v-model="correct2" placeholder="2">
+        <input class="input" type="text" v-model="correct3" placeholder="3">
+        <input class="input" type="text" v-model="correct4" placeholder="4">
+        <input class="input" type="text" v-model="correct5" placeholder="5">
+        <h3>不正解の選択肢（1個以上）</h3>
+        <input class="input" type="text" v-model="incorrect1" placeholder="1">
+        <input class="input" type="text" v-model="incorrect2" placeholder="2">
+        <input class="input" type="text" v-model="incorrect3" placeholder="3">
+        <input class="input" type="text" v-model="incorrect4" placeholder="4">
+        <input class="input" type="text" v-model="incorrect5" placeholder="5">
+        <h3>解説文(markdown対応)</h3>
+        <textarea class="textarea" v-model="answerText" class="mdtext"></textarea>
+        <div contenteditable="true" width="50px" height="50px" @paste="pasteImage('answer', $event)">
+          解説用画像がある場合はこのテキスト欄にペースト（下のテキストエリアではない）
+        </div>
+        <textarea v-model="answerImage" disabled></textarea>
+        <div>
+          <a class="button is-primary" @click="addQuiz">追加</a>
+          <a class="button" @click="resetInput">リセット</a>
+        </div>
+        <hr>
+        <div>
+          <h3>JSON</h3>
+          <textarea class="textarea" v-model="output"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <a class="button" href="index.html">クイズに戻る！</a> <br>(JSONは保存されません。別途jsonファイルに保存してください。）
+        </div>
+      </div>
+    </footer>
+
   </div>
-  <hr>
-  <div>
-    <a href="index.html">クイズに戻る！</a>
-    (JSONは保存されません。別途txtファイルなどに保存してください。）
-    <script src="lib/vue.min.js"></script>
-    <script src="lib/jquery.min.js"></script>
-    <script src="lib/toastr.min.js"></script>
-    <script src="scripts/qjc.js"></script>
+  <script src="lib/vue.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/toastr.min.js"></script>
+  <script src="scripts/qjc.js"></script>
 </body>
 
 </html>

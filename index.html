@@ -10,71 +10,76 @@
   <link rel="stylesheet" href="./css/bulma.css">
 </head>
 
-<body id="app" v-cloak>
+<body>
+  <div id="app" v-cloak>
+    <nav class="nav has-shadow">
+      <div class="container">
 
-  <nav class="nav">
-    <div class="nav-left">
-      <a class="nav-item is-brand" href="#">
-        <img src="./images/qv-logo.png" alt="QUIZVUE">
-      </a>
-    </div>
+        <div class="nav-left">
+          <a class="nav-item is-brand" href="#">
+            <h1 class="title">QUIZVUE</h1>
+          </a>
+        </div>
 
-    <div class="nav-center">
-      <a class="nav-item">
-        ID:{{ question.id }}
-      </a>
-      <a class="nav-item">
-        No. {{ questionIndex + 1 }} / {{ questions.length }}
-      </a>
-      <!--<a class="nav-item">
-        <button class="button is-info" v-on:click="initializeApp">FETCH</button>
-      </a>-->
-    </div>
+        <div class="nav-center">
+          <a class="nav-item">ID:{{ question.id }}</a>
+          <a class="nav-item">No. {{ questionIndex + 1 }} / {{ questions.length }}</a>
+          <!--<a class="nav-item"><button class="button is-info" v-on:click="initializeApp">FETCH</button></a>-->
+        </div>
 
-    <div class="nav-right">
-    </div>
-  </nav>
-
-  <section class="section">
-    <div class="container">
-      <div v-if="questionOpen">
-        <p v-html="question.problem | marked"></p>
-        <p v-model="question.reference"></p>
-        <img :src="question.problemImage">
-        <ul>
-          <li v-for="choice in choices">
-            <label class="checkbox"><input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices">{{ choice }}</label>
-          </li>
-        </ul>
-        <p>選択: {{ checkedChoices }}</p>
-        <button class="button is-primary" v-on:click="answerQuiz" :disabled="answerOpen">回答</button>
+        <div class="nav-right">
+        </div>
       </div>
+    </nav>
 
-      <div v-if="answerOpen" transition="fade">
-        <h1>解答</h1>
-        <button v-if="isCorrect" id="correct" class="button is-info"> O </button>
-        <button v-else id="wrong" class="button is-danger"> X </button>
-        <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
-        <p v-html="question.answer | marked"></p>
-        <img :src="question.answerImage">
-        <button class="button is-primary" v-on:click="nextQuiz">次の問題</button>
+    <section class="section">
+      <div class="container">
+        <div v-if="questionOpen">
+          <p v-html="question.problem | marked"></p>
+          <p v-model="question.reference"></p>
+          <img :src="question.problemImage">
+          <ul>
+            <li v-for="choice in choices">
+              <label class="checkbox"><input type="checkbox" id="{{ choice }}" value="{{ choice }}" v-model="checkedChoices" :disabled="answerOpen">{{ choice }}</label>
+            </li>
+          </ul>
+          <p>選択: {{ checkedChoices }}</p>
+          <button v-on:click="answerQuiz" class="button is-primary" :disabled="answerOpen || checkedChoices.length === 0" v-else>回答</button>
+          <p>出典: {{ question.reference }}</p>
+        </div>
+
+        <div v-if="answerOpen" transition="fade">
+          <h1>解答</h1>
+          <button v-if="isCorrect" id="correct" class="button is-info"> O </button>
+          <button v-else id="wrong" class="button is-danger"> X </button>
+          <h3>正解は：<span v-for="correct in question.corrects">{{ correct }} </span></h3>
+          <p v-html="question.answer | marked"></p>
+          <img :src="question.answerImage">
+          <button class="button is-primary" v-on:click="nextQuiz">次の問題</button>
+        </div>
+
+        <div v-if="endOpen" transition="fade">
+          <h1>クリア！</h1>
+          <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
+          <button class="button is-primary" v-on:click="initializeApp">もう１度！</button>
+        </div>
       </div>
+    </section>
 
-      <div v-if="endOpen" transition="fade">
-        <h1>クリア！</h1>
-        <h2>正答数： {{ correctNum }} out of {{ questionIndex }}</h2>
-        <button class="button is-primary" v-on:click="initializeApp">もう１度！</button>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <a class="button" href="qjc.html">QJC</a>
+          <a class="button" href="qjm.html">QJM</a>
+        </div>
       </div>
-      <hr>
-      <a href="qjc.html">クイズ用のJSONを作りに行く！</a>
+    </footer>
 
-    </div>
-  </section>
+  </div>
   <script src="lib/vue.min.js"></script>
   <script src="lib/lodash.min.js"></script>
   <script src="lib/marked.min.js"></script>
   <script src="scripts/app.js"></script>
-
 </body>
 
 </html>
