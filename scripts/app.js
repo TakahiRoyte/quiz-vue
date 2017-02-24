@@ -3,6 +3,8 @@ marked.setOptions({
   breaks: true,
 });
 
+const quizJsonPath = './data/ap.json';
+
 new Vue({
   el: '#app',
   // データ
@@ -15,7 +17,7 @@ new Vue({
     choices: [],
     checkedChoices: [],
     isCorrect: false,
-	isAnswerButtonDisabled: true,
+    isAnswerButtonDisabled: true,
     answerOpen: false,
     questionOpen: true,
     endOpen: false,
@@ -25,21 +27,6 @@ new Vue({
   },
   // メソッド
   methods: {
-    fetchData: () => {
-      return new Promise((resolve, reject) => {
-        fetch('./data/ap.json')
-          .then(response => response.json())
-          .then(data => {
-            
-            console.log('get data')
-            resolve(data.data);
-          })
-          .catch(error => {
-            console.log('error on fetch!!!');
-            reject(error);
-          });
-      })
-    },
     // 回答する
     answerQuiz: function () {
       // 項目を未選択の場合進まない
@@ -60,7 +47,7 @@ new Vue({
         this.questionIndex = this.questions.length;
         this.questionOpen = false;
         this.endOpen = true;
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
       } else {
 
         // questionに次の問題をセットする
@@ -68,7 +55,7 @@ new Vue({
         // 選択肢を生成する correctsとincorrectsを繋げシャッフル
         this.choices = _.shuffle(_.concat(this.question.corrects, this.question.incorrects));
         this.checkedChoices = [];
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
       }
     },
     // 初期化処理
@@ -76,47 +63,38 @@ new Vue({
 
       console.log('init')
 
-      // 問題を取得する
-      this.fetchData()
-        .then(data => {
+      // 変数の初期化
+      this.questionIndex = 0;
+      this.correctNum = 0;
+      this.isCorrect = false;
+      this.answerOpen = false;
+      this.questionOpen = true;
+      this.endOpen = false;
+      this.checkedChoices = [];
 
+      // 問題の取得
+      this.questions = quizData;
 
-          console.log('init vars')
-          // 変数の初期化
-          this.questionIndex = 0;
-          this.correctNum = 0;
-          this.isCorrect = false;
-          this.answerOpen = false;
-          this.questionOpen = true;
-          this.endOpen = false;
-          this.checkedChoices = [];
+      // 問題をランダムに並べた配列を作成する
+      var questionsNum = this.questions.length;
 
-          // 問題の取得
-          this.questions = data;
+      var arr = [];
+      for (var i = 0; i < questionsNum; i++) {
+        arr[i] = i;
+      }
 
-          // 問題をランダムに並べた配列を作成する
-          var questionsNum = this.questions.length;
+      var randomIndex;
+      for (var i = 0; i < questionsNum; i++) {
+        randomIndex = Math.floor(Math.random() * arr.length);
+        this.shuffledArr[i] = arr[randomIndex];
+        arr.splice(randomIndex, 1);
+      }
 
-          var arr = [];
-          for (var i = 0; i < questionsNum; i++) {
-            arr[i] = i;
-          }
+      // questionにquestionsの1問目を設定する
+      this.question = this.questions[this.shuffledArr[this.questionIndex]];
 
-          var randomIndex;
-          for (var i = 0; i < questionsNum; i++) {
-            randomIndex = Math.floor(Math.random() * arr.length);
-            this.shuffledArr[i] = arr[randomIndex];
-            arr.splice(randomIndex, 1);
-          }
-
-          // questionにquestionsの1問目を設定する
-          this.question = this.questions[this.shuffledArr[this.questionIndex]];
-
-          // 選択肢を生成する correctsとincorrectsを繋げシャッフル
-          this.choices = _.shuffle(_.concat(this.question.corrects, this.question.incorrects));
-
-        })
-        .catch(error => console.error(error));
+      // 選択肢を生成する correctsとincorrectsを繋げシャッフル
+      this.choices = _.shuffle(_.concat(this.question.corrects, this.question.incorrects));
 
     }
   },
